@@ -5,7 +5,7 @@ export default class Game {
     constructor(data) {
         this.id = (data && data.id) || uuidv4();
         this.carList = (data && data.carList) || [];
-        this.podium = (data && data.podium) || {first: null, second: null, third: null};
+        this.podium = (data && data.podium) || [];
         this.speedwaylength = (data && data.speedwaylength) || 0;
         this.isfinished = (data && data.isfinished) || false;
     }

@@ -1,42 +1,51 @@
 import { useState } from 'react';
 import './App.css';
+import DriverNamesComponent from './Components/DriverNamesComponent';
+import FinishComponent from './Components/FinishComponent';
+import InGameComponent from './Components/InGameComponent';
+import PreStartComponent from './Components/PreStartComponent';
+import StartComponent from './Components/StartComponent';
 import Game from './Core/Game';
 
 const App = () => {
-  const [isStarted, setIsStarted] = useState(false);
-  const [playersNumber, setPlayersNumber] = useState(0);
-  const [speedwaylength, setSpeedwaylength] = useState(0);
+  const [isStarted, setIsStarted] = useState("PRE-START");
+  const [game, setGame] = useState(new Game());
 
-  const game = new Game();
+  const getCurrentPage = () =>{
+    switch (isStarted) {
+      case "PRE-START":
+        return (
+          <PreStartComponent setIsStarted={setIsStarted}></PreStartComponent>
+      )
+      case "START":
+        return (
+          <StartComponent game={game} setIsStarted={setIsStarted}></StartComponent>
+      )
+      case "DRIVER-NAMES":
+        return (
+          <DriverNamesComponent game={game} setGame={setGame} setIsStarted={setIsStarted}></DriverNamesComponent>
+      )
+      case "IN-GAME":
+        return (
+          <InGameComponent game={game} setGame={setGame} setIsStarted={setIsStarted}></InGameComponent>
+      )
 
-  const startGame = () => {
-    game.startgame(playersNumber, speedwaylength);
-    console.log(game);
-    debugger
+      case "FINISH":
+        return (
+          <FinishComponent game={game}></FinishComponent>
+      )
+    
+      default:
+        break;
+    }
   }
 
 
   return (
-    <div className="App">
-      {
-        isStarted 
-        ? (
-          <form>
-            <label>Ingrese la cantidad de jugadores</label>
-            <input type={'number'} value={playersNumber} onChange={(e)=> setPlayersNumber(e.target.value)}></input>
-            <br></br>
-            <label>Ingrese la distancia de la pista</label>
-            <input type={'number'} value={speedwaylength} onChange={(e)=> setSpeedwaylength(e.target.value)}></input>
-            <br></br>
-            <button onClick={startGame}>Iniciar</button>
-          </form>
-        )
-        : (
-          <button onClick={() => setIsStarted(true)}>
-            start
-          </button>
-        )
-      }
+    <div className="appContainer">
+        <div className="appCard">
+          {getCurrentPage()}
+        </div>
     </div>
   );
 }
