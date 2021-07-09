@@ -62,7 +62,7 @@ const App = () => {
             <label>Ingrese la cantidad de jugadores</label>
             <input type={'number'} value={playersNumber} onChange={(e)=> setPlayersNumber(e.target.value)}></input>
             <br></br>
-            <label>Ingrese la distancia de la pista</label>
+            <label>Ingrese la distancia de la pista en Km</label>
             <input type={'number'} value={speedwaylength} onChange={(e)=> setSpeedwaylength(e.target.value)}></input>
             <br></br>
             <button onClick={startGame}>Iniciar</button>
@@ -76,29 +76,26 @@ const App = () => {
                 <label>{`Ingresa el nombre del conductor ${i + 1}`}</label>
                 <input value={game.carList[i].driverName} 
                 onChange={(e)=> {
-                  console.log(e.target.value)
                   game.carList[i].driverName = e.target.value;
                   setGame({...game})
                 }}></input>
               </div>
             ))}
-            <button onClick={()=> setIsStarted("IN-GAME")}>a jugar</button>
+            <button onClick={()=> setIsStarted("IN-GAME")}>A jugar</button>
           </div>
       )
       case "IN-GAME":
-        console.log(game)
         return (
           <div>
             <h1>Listado de jugadores</h1>
             <div>
               {
                 game.carList.map((car, i) =>{
-                  console.log(car)
                   return (
                   <div key={i}>
                     <span>{`Carril numero ${i + 1} `}</span>
                     <span>{`carrito de ${car.driverName}`}</span>
-                    <span>{`posición en la pista ${car.currentposition * 1000} KM`}</span>
+                    <span>{` Recorrido ${car.currentposition * 100} M`}</span>
                   </div>
                 )})
               }
@@ -110,12 +107,12 @@ const App = () => {
       case "FINISH":
         return (
           <div>
-            <h1>se acabo el juego</h1>
-            <span>{`primero ${game.podium[0].driverName}`}</span>
+            <h1>Se acabó el juego</h1>
+            <span>{`Primero ${game.podium[0].driverName}`}</span>
             <br></br>
-            <span>{`segundo ${game.podium[1].driverName}`}</span>
+            <span>{`Segundo ${game.podium[1].driverName}`}</span>
             <br></br>
-            <span>{`tercero ${game.podium[2].driverName}`}</span>
+            <span>{`Tercero ${game.podium[2].driverName}`}</span>
           </div>
       )
     
