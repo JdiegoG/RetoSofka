@@ -13,7 +13,10 @@ const DriverNamesComponent = ({game, setGame, setIsStarted}) => {
             }}></input>
           </div>
         ))}
-        <button onClick={()=> setIsStarted("IN-GAME")}>A jugar</button>
+        <button onClick={()=> {
+          setIsStarted("IN-GAME")
+          localStorage.setItem("currentGame", JSON.stringify(game))
+          }}>A jugar</button>
       </Fragment>
     )
 }

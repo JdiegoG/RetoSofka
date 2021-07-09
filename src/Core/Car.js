@@ -3,7 +3,7 @@ import {v4 as uuidv4} from 'uuid';
 export default class Car {
     constructor(data) {
         this.id = (data && data.id) || uuidv4();
-        this.driverName = (data && data.driver) || "";
+        this.driverName = (data && data.driverName) || "";
         this.currentposition = (data && data.currentposition) || 0;
         this.isFinish = (data && data.isFinish) || false;
     }
