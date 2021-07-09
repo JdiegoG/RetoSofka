@@ -6,4 +6,3 @@ export default class Driver {
         this.name = (data && data.name) || '';
     }
 }
-
