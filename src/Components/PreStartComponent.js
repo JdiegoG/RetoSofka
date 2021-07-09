@@ -3,8 +3,8 @@ import { Fragment } from "react"
 const PreStartComponent = ({setIsStarted}) => {
     return(
       <Fragment>
-        <h1>Proyecto sofka</h1>
-        <h4>por: Juan Diego</h4>
+        <h1>RETO SOFKA</h1>
+        <h4>Por: Juan Diego Gonzalez</h4>
         <button onClick={() => setIsStarted("START")}>
         start
         </button>

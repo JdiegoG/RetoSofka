@@ -35,16 +35,14 @@ const InGameComponent = ({game, setGame, setIsStarted}) => {
     
       const deberialanzar = () =>{
         if(!game.carList[currentTurn].isFinish){
-          console.log("si")
           return (
             <div>
-              <h3>{`Turno carrito numero ${currentTurn + 1}`}</h3>
+              <h3>{`Turno jugador ${currentTurn + 1}`}</h3>
               <button onClick={moverse}>lanzar Dado</button>
             </div>
           )
         }
         else{
-          console.log("else")
           if(currentTurn < (game.carList.length - 1)){
             setCurrentTurn(currentTurn + 1)
             localStorage.setItem("localTurn", currentTurn + 1)
