@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import DriverNamesComponent from './Components/DriverNamesComponent';
 import FinishComponent from './Components/FinishComponent';
+import HistoryComponent from './Components/HistoryComponent';
 import InGameComponent from './Components/InGameComponent';
 import PreStartComponent from './Components/PreStartComponent';
 import StartComponent from './Components/StartComponent';
@@ -10,6 +11,14 @@ import Game from './Core/Game';
 const App = () => {
   const [isStarted, setIsStarted] = useState("PRE-START");
   const [game, setGame] = useState(new Game());
+
+  useEffect(() => {
+    const currentGame = localStorage.getItem("currentGame")
+    if(currentGame){
+      setGame({...JSON.parse(currentGame)})
+      setIsStarted("IN-GAME")
+    }
+  }, [])
 
   const getCurrentPage = () =>{
     switch (isStarted) {
@@ -33,6 +42,11 @@ const App = () => {
       case "FINISH":
         return (
           <FinishComponent game={game}></FinishComponent>
+      )
+
+      case "HISTORY":
+        return (
+          <HistoryComponent></HistoryComponent>
       )
     
       default:

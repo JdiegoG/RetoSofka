@@ -7,6 +7,7 @@ const StartComponent = ({game, setIsStarted}) => {
     const startGame = (e) => {
         e.preventDefault()
         game.startgame(playersNumber, speedwaylength);
+        localStorage.setItem("currentGame", JSON.stringify(game))
         setIsStarted("DRIVER-NAMES")
       }
 
